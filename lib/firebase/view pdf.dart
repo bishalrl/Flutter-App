@@ -1,67 +1,67 @@
-import 'dart:html';
+// import 'dart:async';
+// import 'dart:io';
 
-import 'package:flutter/material.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+// import 'package:flutter/material.dart';
+// import 'package:http/http.dart' as http;
+// import 'package:path_provider/path_provider.dart';
+// import 'package:pdf_viewer_plugin/pdf_viewer_plugin.dart';
 
-class loadpdf extends StatefulWidget {
-  const loadpdf({Key? key}) : super(key: key);
+// class Fun1 extends StatefulWidget {
+//   @override
+//   _Fun1State createState() => _Fun1State();
+// }
 
-  @override
-  State<loadpdf> createState() => _loadpdfState();
-}
+// class _Fun1State extends State<Fun1> {
+//   final sampleUrl1 =
+//       'https://firebasestorage.googleapis.com/v0/b/e-library-eb4b4.appspot.com/o/files%2FPROPOSAL.pdf?alt=media&token=b31089dd-3bc9-4ad2-9cb7-61ca3bd94a93';
 
-class _loadpdfState extends State<loadpdf> {
-  firebase_storage.FirebaseStorage storage =
-      firebase_storage.FirebaseStorage.instance;
-  Future<void> listExample() async {
-    firebase_storage.ListResult result = await firebase_storage
-        .FirebaseStorage.instance
-        .ref()
-        .child('files')
-        .listAll();
+//   String? pdfFlePath1;
 
-    result.items.forEach((firebase_storage.Reference ref) {
-      print('Found file: $ref');
-    });
+//   Future<String> downloadAndSavePdf1() async {
+//     final directory = await getApplicationDocumentsDirectory();
+//     final file = File('${directory.path}/sample.pdf');
+//     if (await file.exists()) {
+//       return file.path;
+//     }
+//     final response = await http.get(Uri.parse(sampleUrl1));
+//     await file.writeAsBytes(response.bodyBytes);
+//     return file.path;
+//   }
 
-    result.prefixes.forEach((firebase_storage.Reference ref) {
-      print('Found directory: $ref');
-    });
-    Future<void> downloadURLExample() async {
-      String downloadURL = await firebase_storage.FirebaseStorage.instance
-          .ref('files/microprocessor.pdf')
-          .getDownloadURL();
-      print(downloadURL);
-      PDFDocument doc = await PDFDocument.fromURL(downloadURL);
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  Viewpdf(doc))); //Notice the Push Route once this is done.
-    }
+//   void loadPdf1() async {
+//     pdfFlePath1 = await downloadAndSavePdf1();
+//     setState(() {});
+//   }
 
-    @override
-    void initState() {
-      // TODO: implement initState
-      super.initState();
-      listExample();
-      downloadURLExample();
-      print("All done!");
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return CircularProgressIndicator();
-  }
-}
-
-class Viewpdf extends StatelessWidget {
-  PDFDocument document;
-  Viewpdf(this.document);
-  @override
-  Widget build(BuildContext context) {
-    return PDFViewer(document: document);
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Builder(builder: (context) {
+//         return Scaffold(
+//           backgroundColor: Colors.black,
+//           appBar: AppBar(
+//             title: Text('Plugin example app'),
+//           ),
+//           body: Center(
+//             child: Column(
+//               children: <Widget>[
+//                 ElevatedButton(
+//                   child: Text("microprocessor"),
+//                   onPressed: loadPdf1,
+//                 ),
+//                 if (pdfFlePath1 != null)
+//                   Expanded(
+//                     child: Container(
+//                       child: PdfView(path: pdfFlePath1!),
+//                     ),
+//                   )
+//                 else
+//                   Text("Pdf is not Loaded"),
+//               ],
+//             ),
+//           ),
+//         );
+//       }),
+//     );
+//   }
+// }

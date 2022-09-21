@@ -39,9 +39,17 @@ dependencies:
   firebase_storage: ^10.3.8  
   flutter_document_picker: ^5.1.0 
   advance_pdf_viewer: ^2.0.1
-  
-
-   
+  pdf_viewer_plugin: ^2.0.1
+  path_provider: ^2.0.11
+  io: ^1.0.3
+  syncfusion_flutter_pdf: ^20.2.49
+  flutter_cached_pdfview: ^0.4.1
+  firebase_auth: ^3.9.0
+  provider: ^6.0.3
+  cloud_firestore: ^3.4.8
+  pdf_viewer_flutter: ^1.0.2
+  flutter_pdfview: ^1.2.3
+  path_drawing: ^1.0.1
   
 
   

@@ -2,12 +2,10 @@
 //import 'package:http/http.dart' as http;
 
 //import 'package:digital_library/pages/sigup_page.dart';
+import 'package:elibrary/authentication/presentation/sigup.dart';
 import 'package:flutter/material.dart';
-import '../authentication/presentation/sigup.dart';
-import 'api.dart';
-import '../main.dart';
-import '../utiles/route.dart';
-import 'home.dart';
+
+import '../application/user_service.dart';
 
 //const SERVER_IP = 'http://localhost:3000';
 
@@ -19,30 +17,27 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  var height = 0;
+  // void displayDialog(BuildContext context, String title, String text) =>
+  //     showDialog(
+  //       context: context,
+  //       builder: (context) =>
+  //           AlertDialog(title: Text(title), content: Text(text)),
+  //     );
+  var height;
 
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  _register() {
-    var data = {
-      'email': emailController.text,
-      'password': passwordController.text,
-    };
-    var res = CallApi().postData(data, '/login');
-    // var body = json.decode(res.body);
-    if (res == 200) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomePage()));
-    } else {
-      (print("Error occured"));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Material(
         child: SingleChildScrollView(
             child: Column(children: [
+      // Image.asset(
+      //  "assets/images/111.jpeg",
+      //   fit: BoxFit.cover,
+      //   height: 300,
+      // ),
       const SizedBox(
         height: 20,
       ),
@@ -63,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             TextFormField(
               controller: emailController,
-              //  validator
+              //  validator: ,
               decoration: const InputDecoration(
                 hintText: "Enter email",
                 labelText: "email",
@@ -85,8 +80,9 @@ class _LoginPageState extends State<LoginPage> {
             ),
             MaterialButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
+                AuthService.loginUserFromUI(context,
+                    email: emailController.text.trim(),
+                    password: passwordController.text.trim());
               },
               child: (Container(
                 height: 50,
@@ -116,8 +112,10 @@ class _LoginPageState extends State<LoginPage> {
                   // setState(() {
 
                   //  });
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => RegisterUser()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RegisterUser()));
                 },
                 child: (Container(
                     //padding: EdgeInsets.all(10),

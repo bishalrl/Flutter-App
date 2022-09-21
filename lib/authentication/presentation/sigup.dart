@@ -2,33 +2,21 @@ import 'dart:convert';
 import 'package:elibrary/pages/api.dart';
 import 'package:elibrary/pages/login.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'api.dart';
 
-class sigin extends StatefulWidget {
-  const sigin({Key? key}) : super(key: key);
+import '../application/user_service.dart';
+
+class RegisterUser extends StatefulWidget {
+  const RegisterUser({Key? key}) : super(key: key);
 
   @override
-  State<sigin> createState() => _siginState();
+  State<RegisterUser> createState() => _RegisterUserState();
 }
 
-class _siginState extends State<sigin> {
+class _RegisterUserState extends State<RegisterUser> {
   TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController password1Controller = TextEditingController();
+  TextEditingController password2Controller = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  _register() {
-    var data = {
-      'username': usernameController.text,
-      'email': emailController.text,
-      'password': passwordController.text,
-    };
-    var res = CallApi().postData(data, '/register');
-
-    if (res == 200) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const LoginPage()));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +63,7 @@ class _siginState extends State<sigin> {
                 height: 6,
               ),
               TextFormField(
-                controller: passwordController,
+                controller: password1Controller,
                 obscureText: true,
                 decoration: const InputDecoration(
                   hintText: "Enter your password",
@@ -87,7 +75,7 @@ class _siginState extends State<sigin> {
                 height: 6,
               ),
               TextFormField(
-                controller: passwordController,
+                controller: password2Controller,
                 obscureText: true,
                 decoration: const InputDecoration(
                   hintText: "Re-type Password",
@@ -100,7 +88,12 @@ class _siginState extends State<sigin> {
               ),
               MaterialButton(
                 onPressed: () async {
-                  _register();
+                  AuthService.registerUserFromUI(
+                    context,
+                    email: emailController.text.trim(),
+                    password1: password1Controller.text.trim(),
+                    password2: password2Controller.text.trim(),
+                  );
                 },
                 child: const Text(
                   "submit",
