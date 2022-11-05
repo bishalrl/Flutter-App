@@ -1,12 +1,18 @@
 //import 'package:digital_library/computer/semistar1.dart';
-import 'package:elibrary/firebase/view%20pdf.dart';
-import 'package:flutter/material.dart';
 
-class computer extends StatelessWidget {
-  const computer({Key? key}) : super(key: key);
+import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+import 'package:elibrary/firebase/pdfview.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'domain/computer_engineering_provider.dart';
+
+class Computer extends StatelessWidget {
+  const Computer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    context.read<ComputerEngineeringProvider>().getSem1Notes();
+
     return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -19,217 +25,27 @@ class computer extends StatelessWidget {
             ),
           ),
         ),
-        body: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: InkWell(
-                child: Container(
-                  height: 80,
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 154, 139, 197),
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      "First semestar",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Color.fromARGB(255, 153, 240, 156),
+        body: Consumer<ComputerEngineeringProvider>(
+            builder: (context, computer, child) => ListView.builder(
+                itemCount: computer.notes.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                      child: ListTile(
+                        title: Text(computer.notes[index].title
+                            .toString()
+                            .toUpperCase()),
                       ),
-                    ),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => loadpdf())));
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: InkWell(
-                child: Container(
-                  height: 80,
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 154, 139, 197),
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      "Second semestar",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Color.fromARGB(255, 153, 240, 156),
-                      ),
-                    ),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => computer())));
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: InkWell(
-                child: Container(
-                  height: 80,
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 154, 139, 197),
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      "Third semestar",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Color.fromARGB(255, 153, 240, 156),
-                      ),
-                    ),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => computer())));
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: InkWell(
-                child: Container(
-                  height: 80,
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 154, 139, 197),
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      "Fourth semestar",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Color.fromARGB(255, 153, 240, 156),
-                      ),
-                    ),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => computer())));
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: InkWell(
-                child: Container(
-                  height: 80,
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 154, 139, 197),
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      "Fifth semestar",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Color.fromARGB(255, 153, 240, 156),
-                      ),
-                    ),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => computer())));
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: InkWell(
-                child: Container(
-                  height: 80,
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 154, 139, 197),
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      "Sixth semestar",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Color.fromARGB(255, 153, 240, 156),
-                      ),
-                    ),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => computer())));
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: InkWell(
-                child: Container(
-                  height: 80,
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 154, 139, 197),
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      "Seventh semestar",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Color.fromARGB(255, 153, 240, 156),
-                      ),
-                    ),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => computer())));
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: InkWell(
-                child: Container(
-                  height: 80,
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 154, 139, 197),
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      "Eight semestar",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Color.fromARGB(255, 153, 240, 156),
-                      ),
-                    ),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => computer())));
-                },
-              ),
-            ),
-          ],
-        ));
+                      onTap: () {
+                        //             Fun(pdfUrl: computer.notes[index].pdfUrl!)));
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => Fun(
+                                    pdfUrl: computer.notes[index].pdfUrl!)));
+
+                        // PDFDocument doc = await PDFDocument.fromURL('http://www.africau.edu/images/default/sample.pdf');                      PDFDocument doc = await PDFDocument.fromURL('http://www.africau.edu/images/default/sample.pdf');
+                      });
+                })));
   }
 }

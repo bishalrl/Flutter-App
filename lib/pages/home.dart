@@ -1,4 +1,6 @@
+import 'package:elibrary/civil/civil.dart';
 import 'package:elibrary/computer/computer.dart';
+import 'package:elibrary/electronic/ele.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -24,28 +26,63 @@ class HomePage extends StatelessWidget {
                     children: [
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [],
+                        ),
                       )
                     ],
                   ),
                 ))),
             Padding(
               padding: const EdgeInsets.all(10),
-              child: Container(
-                height: 80,
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 154, 139, 197),
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
+              child: InkWell(
+                child: Container(
+                  height: 80,
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 154, 139, 197),
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "Civil Engineering",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Color.fromARGB(255, 153, 240, 156),
+                      ),
+                    ),
+                  ),
                 ),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: ((context) => Civil())));
+                },
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(10),
-              child: Container(
-                height: 80,
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 154, 139, 197),
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
+              child: InkWell(
+                child: Container(
+                  height: 80,
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 154, 139, 197),
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "Electrical Engineering",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Color.fromARGB(255, 153, 240, 156),
+                      ),
+                    ),
+                  ),
                 ),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: ((context) => Electrical())));
+                },
               ),
             ),
             Padding(
@@ -80,7 +117,7 @@ class HomePage extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => computer())));
+                      MaterialPageRoute(builder: ((context) => Computer())));
                 },
               ),
             ),
